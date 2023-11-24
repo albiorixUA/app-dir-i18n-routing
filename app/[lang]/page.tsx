@@ -11,6 +11,8 @@ export default async function IndexPage({
 }>) {
   const dictionary = await getDictionary(lang);
 
+  const locale = lang === "en" ? "" : `/${lang}`;
+
   return (
     <div>
       <LocaleSwitcher />
@@ -32,7 +34,15 @@ export default async function IndexPage({
         again nothing happen, and at consol u can see error{" "}
         <span style={{ color: "red" }}>`Uncaught Error: SEGMENT MISMATCH`</span>
       </p>
-      <Link href={`${lang}/test`}>Test page</Link>
+      <p>
+        <Link href={`/${lang}/test/1`}>Test page 1</Link>
+      </p>
+      <p>
+        <Link href={`/${lang}/test/2`}>Test page 2</Link>
+      </p>
+      <p>
+        <Link href={`/${lang}/test/3`}>Test page 3</Link>
+      </p>
     </div>
   );
 }
