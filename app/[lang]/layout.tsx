@@ -1,4 +1,6 @@
+import { Metadata } from "next";
 import { i18n } from "../../i18n-config";
+import { mainDescription, mainTitle } from "../metadata/localeMetadata";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -18,7 +20,11 @@ export default function Root({
   );
 }
 
-export const metadata = {
-  title: "i18n within app directory - Vercel Examples",
-  description: "How to do i18n in Next.js 13 within app directory",
-};
+export async function generateMetadata({
+  params,
+}: Readonly<{ params: { lang: string } }>): Promise<Metadata> {
+  return {
+    title: mainTitle[params.lang],
+    description: mainDescription[params.lang],
+  };
+}

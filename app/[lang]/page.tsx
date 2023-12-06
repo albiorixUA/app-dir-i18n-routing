@@ -11,8 +11,6 @@ export default async function IndexPage({
 }>) {
   const dictionary = await getDictionary(lang);
 
-  const locale = lang === "en" ? "" : `/${lang}`;
-
   return (
     <div>
       <LocaleSwitcher />
@@ -22,27 +20,6 @@ export default async function IndexPage({
         {dictionary["server-component"].welcome}
       </p>
       <Counter dictionary={dictionary.counter} />
-
-      <p>
-        <b>Scenario 1 </b>select language which not default `en` when u click on
-        Test page with not default locale which is `en` all works as expected
-        you see modal page which intercepted from (.)test
-      </p>
-      <p>
-        <b>Scenario 2</b> select default `en` language and click on Test page
-        first time u see modal test page. But when u click back and try to click
-        again nothing happen, and at consol u can see error{" "}
-        <span style={{ color: "red" }}>`Uncaught Error: SEGMENT MISMATCH`</span>
-      </p>
-      <p>
-        <Link href={`/${lang}/test/1`}>Test page 1</Link>
-      </p>
-      <p>
-        <Link href={`/${lang}/test/2`}>Test page 2</Link>
-      </p>
-      <p>
-        <Link href={`/${lang}/test/3`}>Test page 3</Link>
-      </p>
     </div>
   );
 }
